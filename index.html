@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Before / After</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./projects.js"></script>
+  <script defer src="./slider.js"></script>
+</head>
+<body>
+  <main>
+    <div class="comparison" id="comparison" hidden>
+      <img id="after" class="image" alt="" draggable="false">
+      <img id="before" class="image image-before" alt="" draggable="false">
+      <span class="divider" aria-hidden="true"><span class="handle"></span></span>
+      <input id="slider" class="slider" type="range" min="0" max="100" step="1" value="50"
+        aria-label="Сравнение изображений до и после" aria-describedby="instructions">
+    </div>
+    <p id="instructions" class="sr-only">Перемещайте разделитель. Стрелки меняют положение на 1 процент, Home и End показывают одно изображение целиком.</p>
+    <p id="status" role="status" aria-live="polite" class="sr-only">Загрузка изображений…</p>
+    <noscript>Для сравнения изображений включите JavaScript.</noscript>
+  </main>
+</body>
+</html>

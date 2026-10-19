@@ -1,0 +1,40 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; background: transparent; }
+body { font-family: system-ui, sans-serif; }
+main { width: 100%; height: 100%; display: grid; place-items: center; }
+.comparison {
+  --position: 50%;
+  --ratio: 1.78412;
+  position: relative;
+  width: min(100%, calc(100vh * var(--ratio)));
+  width: min(100%, calc(100svh * var(--ratio)));
+  aspect-ratio: var(--ratio);
+  isolation: isolate;
+}
+.comparison[hidden] { display: none; }
+.image { display: block; position: absolute; width: 100%; height: 100%; object-fit: contain; user-select: none; pointer-events: none; }
+.image-before { clip-path: inset(0 calc(100% - var(--position)) 0 0); }
+.divider {
+  position: absolute; top: 0; bottom: 0; left: var(--position); width: 2px;
+  transform: translateX(-50%); background: white; pointer-events: none;
+  box-shadow: 0 0 3px #0006;
+}
+.handle {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 44px; height: 44px; border: 2px solid white; border-radius: 50%;
+  background: #17171750; box-shadow: 0 2px 9px #0004;
+  transition: background-color 140ms ease, box-shadow 140ms ease;
+}
+.handle::before, .handle::after {
+  content: ""; position: absolute; top: 15px; width: 8px; height: 8px;
+  border-top: 2px solid white; border-left: 2px solid white;
+}
+.handle::before { left: 9px; transform: rotate(-45deg); }
+.handle::after { right: 9px; transform: rotate(135deg); }
+.comparison:hover .handle, .comparison:focus-within .handle { background: #17171790; }
+.comparison:focus-within { outline: 3px solid #1473e6; outline-offset: -3px; }
+.comparison:focus-within .handle { box-shadow: 0 0 0 4px #1473e6, 0 2px 9px #0004; }
+.slider { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y pinch-zoom; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.error { padding: 24px; margin: 0; color: #333; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .handle { transition: none; } }
